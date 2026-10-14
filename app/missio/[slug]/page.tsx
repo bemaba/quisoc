@@ -82,7 +82,7 @@ export default function MissionPage() {
           <section className="glass mt-8 rounded-3xl p-5 sm:p-8">
             <div className="flex items-start gap-3"><span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#c6a5ff]/15 text-[#c6a5ff]"><Sparkles size={20}/></span><div><p className="eyebrow">Repte interactiu · 01</p><h2 className="font-display mt-2 text-2xl font-semibold">Detectius de les afirmacions</h2></div></div>
             <p className="mt-5 text-sm leading-7 text-[#b8b2c7]">La Laia veu aquesta frase en una publicació: <span className="font-semibold text-white">«Totes les persones que utilitzen filtres tenen baixa autoestima.»</span></p>
-            <p className="mt-3 text-sm leading-7 text-[#b8b2c7]">Quin tipus d'afirmació és? Tria la resposta que et sembli més adequada. Després podràs llegir la pista i tornar-ho a provar.</p>
+            <p className="mt-3 text-sm leading-7 text-[#b8b2c7]">Quin tipus d&apos;afirmació és? Tria la resposta que et sembli més adequada. Després podràs llegir la pista i tornar-ho a provar.</p>
             <div className="mt-5 grid gap-3">
               {choices.map((item) => <button key={item.id} type="button" disabled={answered && isCorrect} onClick={() => { setChoice(item.id); setAnswered(false); }} className={`rounded-xl border p-4 text-left text-sm transition ${choice === item.id ? "border-[#c6a5ff] bg-[#c6a5ff]/10 text-white" : "border-white/10 bg-white/[.025] text-[#c7c1d3] hover:border-white/25"} `}><span className="mr-3 inline-grid h-6 w-6 place-items-center rounded-full border border-white/20 text-xs">{String.fromCharCode(65 + choices.findIndex((c) => c.id === item.id))}</span>{item.label}</button>)}
             </div>
