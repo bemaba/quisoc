@@ -46,7 +46,7 @@ export default function Home() {
 
       <section className="shell relative grid min-h-[580px] items-center gap-10 py-16 lg:grid-cols-[1.05fr_.95fr] lg:py-20">
         <div className="relative z-10">
-          <div className="eyebrow mb-6 flex items-center gap-2"><span className="h-2 w-2 animate-pulse rounded-full bg-[#c6a5ff]"/> Un repte digital · 3r d'ESO</div>
+          <div className="eyebrow mb-6 flex items-center gap-2"><span className="h-2 w-2 animate-pulse rounded-full bg-[#c6a5ff]"/> Un repte digital · 3r d&apos;ESO</div>
           <h1 className="font-display max-w-[680px] text-5xl font-semibold leading-[1.04] tracking-[-.055em] sm:text-6xl lg:text-[76px]">QUI SOC<br/><span className="text-[#c6a5ff]">DARRERE</span> LA<br/>PANTALLA<span className="text-[#f2a4db]">?</span></h1>
           <p className="mt-7 max-w-lg text-lg leading-8 text-[#b9b5c6]">Descobreix què hi ha més enllà dels likes. Mira les xarxes amb uns altres ulls i investiga tot allò que no es veu a primera vista.</p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -93,7 +93,7 @@ export default function Home() {
 
       <section id="missions" className="shell scroll-mt-8 py-14">
         <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
-          <div><p className="eyebrow mb-3">El mapa d'investigació</p><h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">Cinc missions. Una nova mirada.</h2><p className="mt-3 max-w-xl text-sm leading-6 text-[#a4a0b4]">Cada missió t'ajudarà a descobrir una peça del món digital. Completa els reptes per obrir el camí següent.</p></div>
+          <div><p className="eyebrow mb-3">El mapa d&apos;investigació</p><h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">Cinc missions. Una nova mirada.</h2><p className="mt-3 max-w-xl text-sm leading-6 text-[#a4a0b4]">Cada missió t&apos;ajudarà a descobrir una peça del món digital. Completa els reptes per obrir el camí següent.</p></div>
           <div className="min-w-[180px] rounded-2xl border border-white/10 bg-white/[.035] p-4">
             <div className="flex items-center justify-between text-xs text-[#aaa3bd]"><span>Progrés del repte</span><span>{ready ? doneCount : 0}/5</span></div>
             <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-white/10"><div className="h-full rounded-full bg-gradient-to-r from-[#c6a5ff] to-[#f2a4db] transition-all" style={{ width: `${doneCount * 20}%` }}/></div>
