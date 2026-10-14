@@ -124,6 +124,7 @@ export default function MissionPage() {
   }
 
   function markComplete() {
+    if (!stageOneDone || !stageTwoDone || !stageThreeDone) return;
     const next = { ...completed, [mission.slug]: true };
     localStorage.setItem(progressKey, JSON.stringify(next));
     localStorage.removeItem(missionOneKey);
