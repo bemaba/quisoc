@@ -22,7 +22,6 @@ export default function Home() {
   }, []);
 
   const doneCount = missions.filter((mission) => completed[mission.slug]).length;
-  const firstIncomplete = missions.find((mission) => !completed[mission.slug]);
   const unlocked = (index: number) => index === 0 || missions.slice(0, index).every((mission) => completed[mission.slug]);
 
   function resetProgress() {
@@ -132,7 +131,7 @@ export default function Home() {
 
       <section id="about" className="shell scroll-mt-10 py-12">
         <div className="grid gap-6 rounded-3xl border border-white/10 bg-gradient-to-br from-[#201a30] to-[#101018] p-7 sm:p-10 md:grid-cols-[1fr_auto] md:items-center">
-          <div><p className="eyebrow mb-3">No és un examen. És una investigació.</p><h2 className="font-display max-w-2xl text-2xl font-semibold sm:text-3xl">Les xarxes no expliquen tota la història. Tu pots aprendre a llegir entre línies.</h2><p className="mt-4 max-w-2xl text-sm leading-7 text-[#aaa5b8]">Explora situacions fictícies, contrasta idees i troba estratègies per relacionar-te amb el món digital d'una manera més conscient, crítica i equilibrada.</p></div>
+          <div><p className="eyebrow mb-3">No és un examen. És una investigació.</p><h2 className="font-display max-w-2xl text-2xl font-semibold sm:text-3xl">Les xarxes no expliquen tota la història. Tu pots aprendre a llegir entre línies.</h2><p className="mt-4 max-w-2xl text-sm leading-7 text-[#aaa5b8]">Explora situacions fictícies, contrasta idees i troba estratègies per relacionar-te amb el món digital d&apos;una manera més conscient, crítica i equilibrada.</p></div>
           <a href="#missions" className="primary-button whitespace-nowrap">Explora les missions <ArrowDown size={16}/></a>
         </div>
       </section>
