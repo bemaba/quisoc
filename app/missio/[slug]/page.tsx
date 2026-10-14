@@ -74,7 +74,7 @@ export default function MissionPage() {
   const [stage, setStage] = useState(0);
   const [caseIndex, setCaseIndex] = useState(0);
   const [caseAnswers, setCaseAnswers] = useState<Answers>({});
-  const [caseChecked, setCaseChecked] = useState(false);
+  const [caseChecked, setCaseChecked] = useState(false);\n  const [caseComplete, setCaseComplete] = useState(false);
   const [hypothesisAnswers, setHypothesisAnswers] = useState<Answers>({});
   const [hypothesesChecked, setHypothesesChecked] = useState(false);
   const [conceptIndex, setConceptIndex] = useState(0);
@@ -132,7 +132,7 @@ export default function MissionPage() {
   }
 
   function restartActivity() {
-    setCaseIndex(0); setCaseAnswers({}); setCaseChecked(false);
+    setCaseIndex(0); setCaseAnswers({}); setCaseChecked(false); setCaseComplete(false);
     setHypothesisAnswers({}); setHypothesesChecked(false);
     setConceptIndex(0); setConceptAnswers({}); setConceptChecked(false);
     setIdentityChoice(""); setIdentityChecked(false);
@@ -144,7 +144,7 @@ export default function MissionPage() {
   const correctCaseCount = caseQuestions.filter((q) => caseAnswers[q.id] === String(q.correct)).length;
   const correctHypothesisCount = hypotheses.filter((q, i) => hypothesisAnswers[String(i)] === q.correct).length;
   const correctConceptCount = concepts.filter((q, i) => conceptAnswers[String(i)] === q.correct).length;
-  const stageOneDone = caseChecked && correctCaseCount === caseQuestions.length && hypothesesChecked && correctHypothesisCount === hypotheses.length;
+  const stageOneDone = caseComplete && correctCaseCount === caseQuestions.length && hypothesesChecked && correctHypothesisCount === hypotheses.length;
   const stageTwoDone = conceptChecked && correctConceptCount >= 10 && identityChecked && identityChoice === "partial" && reflectionSubmitted && reflection.trim().length >= 20;
   const stageThreeDone = closingChecked && closingChoice === "listen";
 
@@ -184,10 +184,10 @@ export default function MissionPage() {
           </div>
           <div className="mt-7"><p className="eyebrow">Activitat 1 · Anàlisi del cas</p><h3 className="font-display mt-2 text-xl font-semibold">Quina interpretació està més ben fonamentada?</h3><p className="mt-2 text-sm leading-6 text-[#aaa5b8]">Respon les tres preguntes. Cal encertar-les per passar a les primeres hipòtesis.</p>
             <div className="mt-5 rounded-2xl border border-white/10 p-4 sm:p-5"><p className="text-xs text-[#918aa4]">PREGUNTA {caseIndex + 1} DE {caseQuestions.length}</p><h4 className="mt-2 font-semibold">{caseQuestions[caseIndex].question}</h4><div className="mt-4 grid gap-2">{caseQuestions[caseIndex].options.map((option, i) => <button key={option} onClick={() => { setCaseAnswers((prev) => ({ ...prev, [caseQuestions[caseIndex].id]: String(i) })); setCaseChecked(false); }} className={`rounded-xl border p-3 text-left text-sm transition ${caseAnswers[caseQuestions[caseIndex].id] === String(i) ? "border-[#c6a5ff] bg-[#c6a5ff]/10" : "border-white/10 hover:border-white/20"}`}>{option}</button>)}</div>
-              {caseChecked && <p className="mt-4 rounded-xl bg-[#91d9d0]/[.08] p-3 text-sm leading-6 text-[#b8eee7]">{caseQuestions[caseIndex].feedback}</p>}
-              <div className="mt-4 flex flex-wrap gap-3">{!caseChecked ? <button className="primary-button" disabled={caseAnswers[caseQuestions[caseIndex].id] === undefined} onClick={() => { if (caseAnswers[caseQuestions[caseIndex].id] === String(caseQuestions[caseIndex].correct)) setCaseChecked(true); else setCaseChecked(true); }}>{caseAnswers[caseQuestions[caseIndex].id] === undefined ? "Tria una resposta" : "Comprova la resposta"} <ArrowRight size={16}/></button> : caseAnswers[caseQuestions[caseIndex].id] === String(caseQuestions[caseIndex].correct) ? <button className="primary-button" onClick={() => { if (caseIndex < caseQuestions.length - 1) { setCaseIndex(caseIndex + 1); setCaseChecked(false); } else { setCaseIndex(0); setCaseChecked(false); } }}>{caseIndex < caseQuestions.length - 1 ? "Següent pregunta" : "Repassa les respostes"} <ArrowRight size={16}/></button> : <button className="secondary-button" onClick={() => setCaseChecked(false)}><RotateCcw size={15}/> Torna-ho a provar</button>}</div>
+              {caseChecked && caseAnswers[caseQuestions[caseIndex].id] === String(caseQuestions[caseIndex].correct) && <p className="mt-4 rounded-xl bg-[#91d9d0]/[.08] p-3 text-sm leading-6 text-[#b8eee7]">{caseQuestions[caseIndex].feedback}</p>}
+              <div className="mt-4 flex flex-wrap gap-3">{!caseChecked ? <button className="primary-button" disabled={caseAnswers[caseQuestions[caseIndex].id] === undefined} onClick={() => { if (caseAnswers[caseQuestions[caseIndex].id] === String(caseQuestions[caseIndex].correct)) setCaseChecked(true); else setCaseChecked(true); }}>{caseAnswers[caseQuestions[caseIndex].id] === undefined ? "Tria una resposta" : "Comprova la resposta"} <ArrowRight size={16}/></button> : caseAnswers[caseQuestions[caseIndex].id] === String(caseQuestions[caseIndex].correct) ? <button className="primary-button" onClick={() => { if (caseIndex < caseQuestions.length - 1) { setCaseIndex(caseIndex + 1); setCaseChecked(false); } else { setCaseComplete(true); } }}>{caseIndex < caseQuestions.length - 1 ? "Següent pregunta" : "Cas completat"} <ArrowRight size={16}/></button> : <button className="secondary-button" onClick={() => setCaseChecked(false)}><RotateCcw size={15}/> Torna-ho a provar</button>}</div>
               {caseChecked && caseAnswers[caseQuestions[caseIndex].id] !== String(caseQuestions[caseIndex].correct) && <p className="mt-3 text-xs text-[#f6c879]">La resposta no encaixa amb la informació disponible. Revisa la pista i prova una altra opció.</p>}
-              {caseChecked && caseIndex === caseQuestions.length - 1 && correctCaseCount === caseQuestions.length && <p className="mt-3 text-xs text-[#91d9d0]">Les tres preguntes estan resoltes!</p>}
+              {caseComplete && correctCaseCount === caseQuestions.length && <p className="mt-3 text-xs text-[#91d9d0]">Les tres preguntes estan resoltes!</p>}
             </div>
           </div>
           <div className="mt-7"><p className="eyebrow">Activitat 2 · Primeres hipòtesis</p><h3 className="font-display mt-2 text-xl font-semibold">Fet, opinió o generalització?</h3><p className="mt-2 text-sm leading-6 text-[#aaa5b8]">Classifica cada frase. No podem deduir com és una persona ni com se sent a partir d&apos;una sola publicació.</p>
