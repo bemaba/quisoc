@@ -74,7 +74,8 @@ export default function MissionPage() {
   const [stage, setStage] = useState(0);
   const [caseIndex, setCaseIndex] = useState(0);
   const [caseAnswers, setCaseAnswers] = useState<Answers>({});
-  const [caseChecked, setCaseChecked] = useState(false);\n  const [caseComplete, setCaseComplete] = useState(false);
+  const [caseChecked, setCaseChecked] = useState(false);
+  const [caseComplete, setCaseComplete] = useState(false);
   const [hypothesisAnswers, setHypothesisAnswers] = useState<Answers>({});
   const [hypothesesChecked, setHypothesesChecked] = useState(false);
   const [conceptIndex, setConceptIndex] = useState(0);
